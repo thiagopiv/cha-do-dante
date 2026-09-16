@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ codigo: s
 
   const nomeConvidado = convidado?.nome ? `, ${convidado.nome}` : "";
   const title = `Chá do Dante 🧸 - Convite Especial${nomeConvidado}`;
-  const description = "Confirme sua presença e escolha o Tamanhho da Fralda!!";
+  const description = "Confirme sua presença e escolha o Tamanho da Fralda!!";
   
   const imageUrl = "https://cha-do-dante.vercel.app/capa-quadrada.jpg"; 
 
@@ -26,18 +26,20 @@ export async function generateMetadata({ params }: { params: Promise<{ codigo: s
     openGraph: {
       title,
       description,
+      url: `https://cha-do-dante.vercel.app/convite/${codigo}`,
+      siteName: "Chá do Dante",
       images: [
         {
           url: imageUrl,
-          width: 1200,
-          height: 630,
+          width: 800,
+          height: 800,
           alt: "Chá do Dante",
         },
       ],
       type: "website",
     },
     twitter: {
-      card: "summary_large_image",
+      card: "summary",
       title,
       description,
       images: [imageUrl],
@@ -71,7 +73,7 @@ export default async function ConviteVIP({ params }: { params: Promise<{ codigo:
     <main className="min-h-screen bg-sky-100/70 py-10 px-4 flex items-center justify-center">
       <div className="max-w-xl w-full bg-white rounded-3xl shadow-xl border border-sky-200 overflow-hidden">
         
-        {/* Imagem de Capa em 16:9 */}
+        {/* Imagem de Capa */}
         <div className="relative w-full aspect-video bg-sky-100">
           <Image 
             src="/capa-cha.jpg" 
@@ -99,9 +101,7 @@ export default async function ConviteVIP({ params }: { params: Promise<{ codigo:
             <br/>Arapongas - PR
           </p>
 
-          
-
-          {/* Botões interativos de confirmação (com a escolha de fralda e revelação da mesa após confirmar) */}
+          {/* Botões interativos */}
           <div className="pt-2">
             <BotaoConfirmacao 
               codigo={convidado.codigo_exclusivo} 
