@@ -111,8 +111,7 @@ export default async function ConviteVIP({ params }: { params: Promise<{ codigo:
             <Strong>Arapongas - PR</Strong>
             <br/>
             Por Gentileza, confirme sua presença até dia <strong>16/10</strong> 
-            
-            
+                       
           </p>
 
           {/* Botões interativos de confirmação */}
