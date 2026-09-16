@@ -30,7 +30,7 @@ export default function BotaoWhatsApp({ id, nome, codigo, whatsappInicial, envia
     const emojiUrso = decodeURIComponent("%F0%9F%A7%B8");
     
     const mensagem = encodeURIComponent(
-      `Olá, ${nome}! Tudo bem?  Passando para te convidar com muito carinho para o Chá de Bebê do Dante! Acesse seu convite exclusivo e confirme sua presença por aqui: ${urlConvite}`
+      `Oii, ${nome}! Aguardo a confirmação da sua presença e escolha do tamanho da fralda =) ${urlConvite}`
     );
 
     window.open(`https://wa.me/55${numero}?text=${mensagem}`, "_blank");
