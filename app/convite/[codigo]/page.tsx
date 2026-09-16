@@ -8,7 +8,6 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }: { params: Promise<{ codigo: string }> }): Promise<Metadata> {
   const { codigo } = await params;
 
-  // Busca do convidado no Supabase
   let nomeConvidado = "";
   try {
     const { data: convidado } = await supabase
@@ -26,6 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ codigo: s
 
   const title = `Chá do Dante 🧸 - Convite Especial${nomeConvidado}`;
   const description = "Confirme sua presença e escolha o tamanho da fralda!";
+  const urlConvite = `https://cha-do-dante.vercel.app/convite/${codigo}`;
   const imageUrl = "https://cha-do-dante.vercel.app/capa-quadrada.jpg";
 
   return {
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ codigo: s
     openGraph: {
       title,
       description,
-      url: `https://cha-do-dante.vercel.app/convite/${codigo}`,
+      url: urlConvite, // Define explicitamente og:url
       siteName: "Chá do Dante",
       images: [
         {
