@@ -107,8 +107,8 @@ export default async function ConviteVIP({ params }: { params: Promise<{ codigo:
           </div>
 
           <p className="text-slate-700 text-base md:text-lg text-center leading-relaxed px-2 font-medium">
-            Confirma sua presença no Chá de Bebê do Dante <br/>
-            <strong className="text-slate-900 font-bold">Domingo, 08 de Novembro de 2026 às 13h30?</strong>
+            Por Gentileza, confirme sua presença até dia <strong>16/10</strong> <br/>
+            <strong className="text-slate-900 font-bold">Domingo, 08 de Novembro de 2026 às 13h30</strong>
             <br/>Arapongas - PR
           </p>
 

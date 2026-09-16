@@ -1,6 +1,6 @@
 import { supabase } from "../../../lib/supabase";
 import Link from "next/link";
-import BotaoImprimir from "./BotaoImprimir";
+import BotaoImprimir from "./page";
 
 export const dynamic = 'force-dynamic';
 
