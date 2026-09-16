@@ -106,13 +106,16 @@ export default async function ConviteVIP({ params }: { params: Promise<{ codigo:
             <p className="text-3xl font-black text-sky-950">{convidado.nome}</p>
           </div>
 
-          <p className="text-slate-700 text-base md:text-lg text-center leading-relaxed px-2 font-medium">
-           <h2 className="text-slate-900 font-bold">Domingo, 08 de Novembro de 2026 às 13h30</h2><br/>
-            <Strong>Arapongas - PR</Strong>
-            <br/>
-            Por Gentileza, confirme sua presença até dia <strong>16/10</strong> 
-                       
-          </p>
+          {/* Data e Local do Evento */}
+          <div className="text-slate-700 text-base md:text-lg text-center leading-relaxed px-2 font-medium space-y-1">
+            <h2 className="text-slate-900 font-bold text-lg md:text-xl">
+              Domingo, 08 de Novembro de 2026 às 13h30
+            </h2>
+            <p className="font-bold text-slate-800">Arapongas - PR</p>
+            <p className="text-sm pt-2 text-slate-600">
+              Por gentileza, confirme sua presença até dia <strong>16/10</strong>
+            </p>
+          </div>
 
           {/* Botões interativos de confirmação */}
           <div className="pt-2">
