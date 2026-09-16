@@ -8,19 +8,28 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }: { params: Promise<{ codigo: string }> }): Promise<Metadata> {
   const { codigo } = await params;
 
-  const { data: convidado } = await supabase
-    .from("convidados")
-    .select("nome")
-    .eq("codigo_exclusivo", codigo)
-    .single();
+  // Busca do convidado no Supabase
+  let nomeConvidado = "";
+  try {
+    const { data: convidado } = await supabase
+      .from("convidados")
+      .select("nome")
+      .eq("codigo_exclusivo", codigo)
+      .maybeSingle();
 
-  const nomeConvidado = convidado?.nome ? `, ${convidado.nome}` : "";
+    if (convidado?.nome) {
+      nomeConvidado = `, ${convidado.nome}`;
+    }
+  } catch (e) {
+    console.error("Erro ao buscar metadata:", e);
+  }
+
   const title = `Chá do Dante 🧸 - Convite Especial${nomeConvidado}`;
-  const description = "Confirme sua presença e escolha o Tamanho da Fralda!!";
-  
-  const imageUrl = "https://cha-do-dante.vercel.app/capa-quadrada.jpg"; 
+  const description = "Confirme sua presença e escolha o tamanho da fralda!";
+  const imageUrl = "https://cha-do-dante.vercel.app/capa-quadrada.jpg";
 
   return {
+    metadataBase: new URL("https://cha-do-dante.vercel.app"),
     title,
     description,
     openGraph: {
@@ -33,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ codigo: s
           url: imageUrl,
           width: 800,
           height: 800,
-          alt: "Chá do Dante",
+          alt: "Chá de Bebê do Dante",
         },
       ],
       type: "website",
@@ -101,7 +110,7 @@ export default async function ConviteVIP({ params }: { params: Promise<{ codigo:
             <br/>Arapongas - PR
           </p>
 
-          {/* Botões interativos */}
+          {/* Botões interativos de confirmação */}
           <div className="pt-2">
             <BotaoConfirmacao 
               codigo={convidado.codigo_exclusivo} 
