@@ -13,11 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://cha-do-dante.vercel.app"),
   title: "Chá do Dante 🧸",
   description: "Você é nosso convidado especial para o Chá de Bebê do Dante!",
   icons: {
-    icon: "https://cha-do-dante.vercel.app/capa-quadrada.jpg",
-    apple: "https://cha-do-dante.vercel.app/capa-quadrada.jpg",
+    icon: "/icon.jpg",
+    apple: "/icon.jpg",
   },
   openGraph: {
     title: "Chá do Dante 🧸",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "Chá do Dante",
     images: [
       {
-        url: "https://cha-do-dante.vercel.app/capa-quadrada.jpg",
+        url: "/icon.jpg",
         width: 800,
         height: 800,
         alt: "Chá de Bebê do Dante",
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Chá do Dante 🧸",
     description: "Você é nosso convidado especial para o Chá de Bebê do Dante!",
-    images: ["https://cha-do-dante.vercel.app/capa-quadrada.jpg"],
+    images: ["/icon.jpg"],
   },
 };
 
