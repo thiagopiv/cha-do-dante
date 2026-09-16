@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ codigo: s
   const title = `Chá do Dante 🧸 - Convite Especial${nomeConvidado}`;
   const description = "Você é nosso convidado especial para o Chá de Bebê do Dante! Clique para ver os detalhes e confirmar sua presença.";
   
-  const imageUrl = "https://cha-do-dante.vercel.app/capa-cha.jpg"; 
+  const imageUrl = "https://cha-do-dante.vercel.app/capa-quadrada.jpg"; 
 
   return {
     title,

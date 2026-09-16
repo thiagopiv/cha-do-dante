@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: "Chá do Dante 🧸",
   description: "Você é nosso convidado especial para o Chá de Bebê do Dante!",
   icons: {
-    icon: "https://cha-do-dante.vercel.app/capa-cha.jpg",
-    apple: "https://cha-do-dante.vercel.app/capa-cha.jpg",
+    icon: "https://cha-do-dante.vercel.app/capa-quadrada.jpg",
+    apple: "https://cha-do-dante.vercel.app/capa-quadrada.jpg",
   },
   openGraph: {
     title: "Chá do Dante 🧸",
@@ -26,19 +26,19 @@ export const metadata: Metadata = {
     siteName: "Chá do Dante",
     images: [
       {
-        url: "https://cha-do-dante.vercel.app/capa-cha.jpg",
-        width: 1200,
-        height: 630,
+        url: "https://cha-do-dante.vercel.app/capa-quadrada.jpg",
+        width: 800,
+        height: 800,
         alt: "Chá de Bebê do Dante",
       },
     ],
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Chá do Dante 🧸",
     description: "Você é nosso convidado especial para o Chá de Bebê do Dante!",
-    images: ["https://cha-do-dante.vercel.app/capa-cha.jpg"],
+    images: ["https://cha-do-dante.vercel.app/capa-quadrada.jpg"],
   },
 };
 
