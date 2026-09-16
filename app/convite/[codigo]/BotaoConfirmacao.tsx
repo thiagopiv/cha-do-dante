@@ -14,18 +14,30 @@ export default function BotaoConfirmacao({
   numeroMesa?: string | null;
   tamanhoFraldaAtual?: string | null;
 }) {
-  const router = useRouter(); // Hook para limpar o cache do Next.js
+  const router = useRouter();
 
   const [status, setStatus] = useState(statusAtual);
   const [fraldaEscolhida, setFraldaEscolhida] = useState<string | null>(tamanhoFraldaAtual || null);
   const [carregando, setCarregando] = useState(false);
   const [mostrarOpcoesFralda, setMostrarOpcoesFralda] = useState(false);
 
-  // ✨ MAGIA AQUI: Garante que a tela sempre reflita exatamente o que está no banco
+  // Busca em tempo real no cliente para ignorar qualquer cache do servidor
   useEffect(() => {
-    setStatus(statusAtual);
-    setFraldaEscolhida(tamanhoFraldaAtual || null);
-  }, [statusAtual, tamanhoFraldaAtual]);
+    async function carregarDadosEmTempoReal() {
+      const { data } = await supabase
+        .from("convidados")
+        .select("status_presenca, tamanho_fralda")
+        .eq("codigo_exclusivo", codigo)
+        .single();
+
+      if (data) {
+        if (data.status_presenca) setStatus(data.status_presenca);
+        if (data.tamanho_fralda) setFraldaEscolhida(data.tamanho_fralda);
+      }
+    }
+
+    carregarDadosEmTempoReal();
+  }, [codigo]);
 
   // Limites máximos de fraldas
   const LIMITES = { P: 15, M: 35, G: 20 };
@@ -72,8 +84,6 @@ export default function BotaoConfirmacao({
       setStatus(novoStatus);
       if (tamanhoFralda) setFraldaEscolhida(tamanhoFralda);
       setMostrarOpcoesFralda(false);
-      
-      // ✨ Força o site a buscar os dados novos do servidor
       router.refresh(); 
     }
   }

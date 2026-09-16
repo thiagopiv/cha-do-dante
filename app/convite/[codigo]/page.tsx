@@ -4,6 +4,8 @@ import BotaoConfirmacao from "./BotaoConfirmacao";
 import { Metadata } from "next";
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 
 export async function generateMetadata({ params }: { params: Promise<{ codigo: string }> }): Promise<Metadata> {
   const { codigo } = await params;
@@ -35,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ codigo: s
     openGraph: {
       title,
       description,
-      url: urlConvite, // Define explicitamente og:url
+      url: urlConvite,
       siteName: "Chá do Dante",
       images: [
         {
@@ -116,6 +118,7 @@ export default async function ConviteVIP({ params }: { params: Promise<{ codigo:
               codigo={convidado.codigo_exclusivo} 
               statusAtual={convidado.status_presenca} 
               numeroMesa={convidado.numero_mesa}
+              tamanhoFraldaAtual={convidado.tamanho_fralda} 
             />
           </div>
 
