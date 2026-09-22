@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../../lib/supabase";
 import { useRouter } from "next/navigation";
 
@@ -8,11 +8,24 @@ export default function SeletorMesa({
   mesaAtual 
 }: { 
   id: string | number; 
-  mesaAtual?: string | null; 
+  mesaAtual?: string | number | null; 
 }) {
   const router = useRouter();
   const [carregando, setCarregando] = useState(false);
-  const [mesa, setMesa] = useState(mesaAtual || "");
+
+  // Função que limpa o valor e extrai apenas o número (ex: "Mesa 2" -> "2", 2 -> "2")
+  const extrairNumero = (valor: string | number | null | undefined) => {
+    if (!valor) return "";
+    const apenasNumeros = String(valor).replace(/\D/g, "");
+    return apenasNumeros || String(valor).trim();
+  };
+
+  const [mesa, setMesa] = useState(extrairNumero(mesaAtual));
+
+  // Garante que o estado sincronize caso os dados mudem
+  useEffect(() => {
+    setMesa(extrairNumero(mesaAtual));
+  }, [mesaAtual]);
 
   async function alterarMesa(novaMesa: string) {
     setCarregando(true);
@@ -28,8 +41,8 @@ export default function SeletorMesa({
     if (error) {
       alert("Erro ao atualizar a mesa!");
     } else {
-      setMesa(valorFinal || "");
-      router.refresh(); // Atualiza a página para refletir em toda a aba de mesas
+      setMesa(novaMesa);
+      router.refresh();
     }
   }
 
