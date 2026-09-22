@@ -5,6 +5,7 @@ import BotaoExcluir from "./BotaoExcluir";
 import BotaoWhatsApp from "./BotaoWhatsApp";
 import CardWhatsApp from "./CardWhatsApp";
 import AbaMesas from "./AbaMesas";
+import SeletorMesa from "./SeletorMesa";
 import { revalidatePath } from "next/cache";
 
 export const dynamic = 'force-dynamic';
@@ -193,15 +194,9 @@ export default async function PainelAdmin({ searchParams }: { searchParams: Prom
                   <tr key={convidado.id} className="hover:bg-slate-50/50 transition-colors">
                     <td className="p-4 font-bold text-slate-700">{convidado.nome}</td>
                     
-                    {/* Célula da Mesa Alinhada */}
-                    <td className="p-4 font-extrabold text-blue-700 whitespace-nowrap">
-                      {convidado.numero_mesa ? (
-                        <span className="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-xl text-xs font-bold shadow-sm">
-                          <span>🪑</span> {convidado.numero_mesa}
-                        </span>
-                      ) : (
-                        <span className="text-slate-400 text-xs italic">Não definida</span>
-                      )}
+                    {/* Célula da Mesa Editável */}
+                    <td className="p-4 whitespace-nowrap">
+                      <SeletorMesa id={convidado.id} mesaAtual={convidado.numero_mesa} />
                     </td>
 
                     <td className="p-4 text-slate-500 whitespace-nowrap">{convidado.whatsapp || "Não cadastrado"}</td>
@@ -258,7 +253,7 @@ export default async function PainelAdmin({ searchParams }: { searchParams: Prom
           </div>
         </div>
 
-        {/* NOVO: Visão Geral e Botões das Mesas 1 a 12 (Abaixo dos convidados e Antes da Apuração do Bolão) */}
+        {/* Visão Geral e Botões das Mesas */}
         <div>
           <AbaMesas convidados={convidados || []} />
         </div>
